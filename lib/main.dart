@@ -11,6 +11,8 @@ import 'package:flutter/material.dart';
 import 'firebase_options.dart';
 import 'tabs_page.dart';
 
+import 'package:google_tag_manager/google_tag_manager.dart' as gtm;
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -18,6 +20,10 @@ Future<void> main() async {
   );
   _setDefaultEventParameters();
   runApp(const MyApp());
+  gtm.push({
+    'event': 'page_view', 
+    'user_type': 'tester'
+  });
 }
 
 Future<void> _setDefaultEventParameters() async {
